@@ -1,7 +1,12 @@
-﻿Function Install-AzCli{
+﻿Function Install-AzureCli{
 Param(
+
+    [parameter(Mandatory = $False)]
+    [uri]
     $Uri = "https://azurecliprod.blob.core.windows.net/msi/azure-cli-latest.msi",
 
+    [parameter(Mandatory = $False)]
+    [string]
     $PackageName = "Microsoft CLI 2.0 for Azure"
 )
 
