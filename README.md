@@ -19,7 +19,7 @@ It is a really basic implementation, but  it does provides a simple approach whe
 * Switch for disabling SSL validation to support a proxy, useful for debugging requests and responses
 
 ## Cmdlets
-* **Install-AzCli**: Installs the **az cli** if it is not present
+* **Install-AzureCli**: Installs the **az cli** if it is not present
 * **Invoke-AzureCli**: Executes an **az cli** command
 
 ## Installation:
