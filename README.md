@@ -8,22 +8,25 @@ At the time if writing this includes but is not limited to:
  * Azure Kubernetes Service (Preview): Currently supported through az CLI only
  * Various others which I am not going to list right now...
 
-It is fairly basic, but provides a simple approach when it comes to performing actions supported by the az CLI which are not supported in Azure PowerShell.
+It is a really basic implementation, but  it does provides a simple approach when it comes to performing actions which are supported by the az CLI but not in Azure PowerShell. 
 
-Features:
+# Features:
 * Run any az CLI command easily in PowerShell
 * Command parameters are defined using a hashtable
 * Command switches are defined using an array
-* Command responses can be parsed and returned as powershell objects
+* Command responses can be parsed and returned as PowerShell objects
 * Switch for disabling SSL validation to support a proxy, useful for debugging requests and responses
 
+# Cmdlets
+* **Install-AzCli**: Installs the **az cli** if it is not present
+* **Invoke-AzureCli**: Executes an **az cli** command
 
-Installation:
+# Installation:
 ```
 Install-Module -Name PsAzureCli
 ```
 
-Setup:
+# Setup:
 
 Basically import the module, then authenticate with Azure, and point it at the desired subscription.
 ```
@@ -33,19 +36,19 @@ Invoke-AzureCli -ResourceType "account" -Operation "set" -Parameters @{subscript
 }
 ```
 
-Parameters:
+# 'Invoke-AzureCli' Parameters:
 
 * -Path (Optional): Specify the path to the az cli, defaults to "C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin\az.cmd
-* -ResourceType (Required): The top level resource you are interacting with. az *vm* list
-* -Operation (Optional): The next command block after ResourceType. az vm *list*
-* -ChildOperation (Optional): The next command block after Operation az ad user *create*
-* -Parameters (Optional): A hashtable of the command parameters. Eg. @{'display-name' = "testUsername"; password = "testPassword"} is the equivilent to '*--display-name "test" --password "test"*'
-* -Switches (Optional): An array of command switches. Eg. @('generate-ssh-keys') is the equivilent to '*--generate-ssh-keys*'
+* -ResourceType (Required): The top level resource you are interacting with: az **vm** list
+* -Operation (Optional): The next command block after ResourceType: az vm **list**
+* -ChildOperation (Optional): The next command block after Operation: az ad user **create**
+* -Parameters (Optional): A hashtable of the command parameters. Eg. @{'display-name' = "testUsername"; password = "testPassword"} is the equivilent to '**--display-name "test" --password "test"**'
+* -Switches (Optional): An array of command switches. Eg. @('generate-ssh-keys') is the equivilent to '**--generate-ssh-keys**'
 * -PassThru (Optional): If specified then the az cli json response will be deserialized in to a PowerShell object
 * -Verbose (Optional): If specified then the output of the az cli command is outputted to console
 * -DisableSslVerification (Optional): Disable the az cli SSL certificate verification for proxy support
 
-Usage examples:
+# Usage examples:
 ```
 # Create a resource group
 Invoke-AzureCli -ResourceType "group" -Operation "create" -Parameters @{location="northeurope";name="ResourceGroup01"}
